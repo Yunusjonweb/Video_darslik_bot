@@ -1,53 +1,50 @@
-const categories = require("../../Model/Categories");
-const courses = require("../../Model/Courses");
-const users = require("../../Model/Users");
+const categoriesModel = require("../../Model/Categories");
+const coursesModel = require("../../Model/Courses");
+const usersModel = require("../../Model/Users");
+const MenuController = require("../MenuController");
 
 module.exports = async function (bot, message, user) {
   try {
     const userId = message.from.id;
     const messageText = message.text;
 
-    await users.findOneAndUpdate(
-      {
-        user_id: userId,
-      },
-      {
-        step: `categoryName#${messageText}`,
-      }
-    );
+    if (messageText === "⬅️ Ortga") {
+      await usersModel.findOneAndUpdate(
+        {
+          user_id: userId,
+        },
+        {
+          step: 5,
+        }
+      );
 
-    const keyboard = {
-      resize_keyboard: true,
-      keyboard: [],
-    };
-
-    for (let i = 1; i <= 8; i += 3) {
-      keyboard.keyboard.push([
-        {
-          text: i + "-dars",
-        },
-        {
-          text: i + 1 + "-dars",
-        },
-        {
-          text: i + 2 + "-dars",
-        },
-      ]);
+      await MenuController(bot, message, user);
+      return;
     }
 
-    keyboard.keyboard.push([
-      {
-        text: "⬅️ Ortga",
-      },
-      {
-        text: "🔝 Davom etish",
-      },
-    ]);
+    const categoryNameId = user.step.split("#")[1];
+    const category = await categoriesModel.findOne({ name: categoryNameId });
 
-    await bot.sendMessage(userId, "Mualliflardan birini tanlang 👇", {
-      reply_markup: keyboard,
+    const coursesList = await coursesModel.find({
+      category_id: category.id,
+      name: messageText,
+    });
+
+    if (coursesList.length === 0) {
+      await bot.sendMessage(userId, "❌ Topilmadi");
+      return;
+    }
+
+    const course = coursesList[0];
+
+    const courseCaption = `📚 Kurs nomi: <b>${course?.name}</b>\n🧑🏻 Kurs muallifi: ${course?.author}\n✍️ Kurs haqida malumot:${course?.description} \n\n 🔊 Ijtimoiy tarmoqlardagi sahifalarimizga obuna bo'lishni  unutmang. \n\n <a href="http://t.me/yunusbeksherlari">Telegram </a><a href="https://www.instagram.com/reel/CyZzmYSiV5f/?igshid=MTc4MmM1YmI2Ng==">| Instagram </a><a href="https://www.youtube.com/channel/UCRtnsijR37YvpvyYIYV6TeA">| YouTube </a><a href="https://www.tiktok.com/@yunusbek_sherlari?_t=8i7DShr0hb0&_r=1">| TikTok </a>`;
+
+    await bot.sendVideo(userId, course?.video, {
+      parse_mode: "HTML",
+      caption: courseCaption,
+      disable_notification: true,
     });
   } catch (err) {
-    console.log(err + "");
+    console.log(err.toString());
   }
 };

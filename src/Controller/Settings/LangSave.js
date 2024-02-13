@@ -1,5 +1,4 @@
 const users = require("../../Model/Users");
-const MenuController = require("../Order/MenuController");
 const { LangChange } = require("../Texts");
 
 module.exports = async function (bot, message, user) {
@@ -16,8 +15,7 @@ module.exports = async function (bot, message, user) {
     await Promise.all([
       bot.deleteMessage(userId, messageId),
       bot.sendMessage(userId, msg),
-      MenuController(bot, message, user),
-    ]);
+      ]);
   } catch (err) {
     console.log(err.toString());
   }

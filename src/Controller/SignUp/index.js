@@ -1,4 +1,6 @@
 const users = require("../../Model/Users");
+const MenuController = require("../MenuController");
+const MessageController = require("../MessageController");
 const {
   reqCourses,
   reqPhone,
@@ -23,7 +25,7 @@ module.exports = async function (bot, message, user) {
 
       await bot.sendMessage(
         userId,
-        `🇺🇿 Assalomu alaykum, Men <b>Do'stlik Burger</b> yetkazib berish bot'iman!\n\n🇷🇺 Привет, я бот по доставке <b>Бургеров Дустлик</b>!\n\n🇬🇧 Hello, I am a <b>Do'stlik Burger</b> delivery bot!`,
+        `🇺🇿 Assalomu alaykum, Men <b>Do'stlik IT center</b> yetkazib berish bot'iman!\n\n🇷🇺 Привет, я бот по доставке <b>Дустлик ИТ-центр</b>!\n\n🇬🇧 Hello, I am a <b>Do'stlik IT center</b> delivery bot!`,
         { parse_mode: "HTML" }
       );
 
@@ -194,41 +196,14 @@ module.exports = async function (bot, message, user) {
         {
           step: "4",
           phone_number: phoneText,
-          code: code,
         }
       );
-
-      let data = reqCode(user.lang);
-      let keyboard = {
-        inline_keyboard: [
-          [
-            {
-              text: data.btn,
-              callback_data: `code-again`,
-            },
-          ],
-        ],
-      };
-      await bot.sendMessage(userId, data.text, {
-        reply_markup: keyboard,
-      });
-    } else if (user.step == "4") {
-      if (text == user.code) {
-        await users.findOneAndUpdate(
-          {
-            user_id: userId,
-          },
-          {
-            step: "5",
-          }
-        );
-        await bot.sendMessage(
-          userId,
-          finishReg(user.lang, message.from.first_name)
-        );
-      } else {
-        await bot.sendMessage(userId, incorrectCode(user.lang));
-      }
+      await bot.sendMessage(
+        userId,
+        finishReg(user.lang, message.from.first_name)
+      );
+      await MenuController(bot, message, user);
+      await MessageController(bot, message, user);
     }
   } catch (err) {
     console.log(err + "");

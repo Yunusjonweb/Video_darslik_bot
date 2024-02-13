@@ -1,5 +1,5 @@
 const users = require("../../Model/Users");
-const { CityList } = require("../Texts");
+const { CourseList } = require("../Texts");
 
 module.exports = async function (bot, message, user) {
   try {
@@ -10,13 +10,13 @@ module.exports = async function (bot, message, user) {
       inline_keyboard: [],
     };
 
-    let cities = (await CityList(user.lang)).cities;
+    let courses = (await CourseList(user.lang)).course;
 
-    for (let city of cities) {
+    for (let course of courses) {
       keyboard.inline_keyboard.push([
         {
-          text: city,
-          callback_data: city,
+          text: course,
+          callback_data: course,
         },
       ]);
     }
@@ -26,7 +26,7 @@ module.exports = async function (bot, message, user) {
         user_id: userId,
       },
       {
-        step: "city",
+        step: "course",
       }
     );
 

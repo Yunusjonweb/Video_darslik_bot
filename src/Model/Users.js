@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 let UserSchema = new mongoose.Schema({
   user_id: {
-    type: String,
+    type: Number,
     unique: true,
   },
   phone_number: {
@@ -21,11 +21,9 @@ let UserSchema = new mongoose.Schema({
     type: String,
     default: 0,
   },
-  longitude: {
-    type: String,
-  },
-  latitude: {
-    type: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 const users = mongoose.model("users", UserSchema);

@@ -4,7 +4,6 @@ module.exports = async function (bot, message, user) {
   try {
     const userId = message.from.id;
     const text = message.text;
-    const messageId = message.message_id;
 
     let msg = Settings(user);
 
@@ -16,8 +15,8 @@ module.exports = async function (bot, message, user) {
             callback_data: "lang",
           },
           {
-            text: msg.btns.city,
-            callback_data: "city",
+            text: msg.btns.course,
+            callback_data: "course",
           },
           {
             text: msg.btns.phone,

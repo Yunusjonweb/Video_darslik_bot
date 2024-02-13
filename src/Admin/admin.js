@@ -2,6 +2,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const { ADMIN_TOKEN } = require("../../config");
 const MessageController = require("./Controllers/MessageController");
 const admins = require("../Model/Admins");
+const users = require("../Model/Users");
 
 module.exports = async function admin() {
   const bot = new TelegramBot(ADMIN_TOKEN, {
@@ -10,6 +11,7 @@ module.exports = async function admin() {
 
   bot.on("message", async (message) => {
     const userId = message.from.id;
+
     bot
       .getChatMember(-1001951018246, userId)
       .then((response) => {

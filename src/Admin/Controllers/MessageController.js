@@ -15,6 +15,7 @@ const CoursesUpdateImg = require("./Courses/CoursesUpdateVideo");
 const CoursesUpdateName = require("./Courses/CoursesUpdateName");
 const SaveCategory = require("./Category/SaveCategory");
 const UsersCount = require("./UsersCount");
+const users = require("../../Model/Users");
 
 module.exports = async function (bot, message, admin) {
   try {
@@ -32,6 +33,7 @@ module.exports = async function (bot, message, admin) {
           step: `categories#all`,
         }
       );
+
       await CategoryController(bot, message, admin);
     } else if (admin.step?.split("#")[0] == "categories") {
       if (text == "➕ Qo'shish") {

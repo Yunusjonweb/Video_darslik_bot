@@ -84,33 +84,33 @@ module.exports = class Texts {
       return {
         text: "Quyidagilardan birini tanlang",
         keyboard: {
-          literacy: "🛠 Kompyuter savodxonligi darslari",
           office: "💻 Office darslari",
           programming: "💻 Dasturlash darslari",
           comment: "✍️ Taklif yuborish",
           settings: "⚙️ Sozlamalar",
+          statistics: "📊 Statistikasi",
         },
       };
     } else if (lang == "ru") {
       return {
         text: "Выберите один из следующих",
         keyboard: {
-          literacy: "🛠 Занятия по компьютерной грамотности",
           office: "💻 Офисные классы",
           programming: "💻 Классы программирования",
           comment: "✍️ Отправить предложение",
           settings: "⚙️ Настройки",
+          statistics: "📊 Cтатистика",
         },
       };
     } else if (lang == "eng") {
       return {
         text: "Choose one of the following",
         keyboard: {
-          literacy: "🛠 Computer literacy classes",
           office: "💻 Office classes",
           programming: "💻 Programming classes",
           comment: "✍️ Send an offer",
           settings: "⚙️ Settings",
+          statistics: "📊 Statistics",
         },
       };
     }
@@ -148,28 +148,28 @@ module.exports = class Texts {
   static Settings(user) {
     if (user.lang == "uz") {
       return {
-        text: `<b>Muloqot tili:</b> 🇺🇿 O'zbekcha\n<b>Shahar:</b> ${user?.city}\n<b>Telefon:</b> +${user?.phone_number}\n\nQuyidagilardan birini tanlang`,
+        text: `<b>Muloqot tili:</b> 🇺🇿 O'zbekcha\n<b>Kurs nomi:</b> ${user?.courses}\n<b>Telefon:</b> +${user?.phone_number}\n\nQuyidagilardan birini tanlang`,
         btns: {
           lang: "Muloqot tili",
-          city: "Shahar",
+          course: "Kurs nomi",
           phone: "Telefon",
         },
       };
     } else if (user.lang == "ru") {
       return {
-        text: `<b>Язык общения:</b> 🇷🇺 Русский\n<b>Город:</b> ${user.city}\n<b>Телефон:</b> +${user.phone_number}\n\nВыберите один из следующих`,
+        text: `<b>Язык общения:</b> 🇷🇺 Русский\n<b>Название курса:</b> ${user?.courses}\n<b>Телефон:</b> +${user?.phone_number}\n\nВыберите один из следующих`,
         btns: {
           lang: "Язык общения",
-          city: "Город",
+          course: "Название курса",
           phone: "Телефон",
         },
       };
     } else if (user.lang == "eng") {
       return {
-        text: `<b>Language:</b> 🇬🇧 English\n<b>City:</b> ${user.city}\n<b>Phone:</b> +${user.phone_number}\n\nChoose one of the following`,
+        text: `<b>Language:</b> 🇬🇧 English\n<b>Course name:</b> ${user?.courses}\n<b>Phone:</b> +${user?.phone_number}\n\nChoose one of the following`,
         btns: {
           lang: "Language",
-          city: "City",
+          course: "Course name",
           phone: "Phone",
         },
       };
@@ -186,50 +186,58 @@ module.exports = class Texts {
     }
   }
 
-  static async CityList(lang) {
+  static async CourseList(lang) {
     if (lang == "uz") {
       return {
-        cities: ["Do'stlik", "Jizzax", "Tashkent"],
+        course: [
+          "🛠 Kompyuter savodxonligi",
+          "💻 Frontend dasturlash",
+          "📚 English",
+        ],
       };
     } else if (lang == "ru") {
       return {
-        cities: ["Ташкент"],
+        course: [
+          "🛠Компьютерная грамотность",
+          "💻 Фронтенд-программирование",
+          "📚 Английский",
+        ],
       };
     } else if (lang == "eng") {
       return {
-        cities: ["Tashkent"],
+        course: ["🛠Computer Literacy", "💻 Frontend programming", "📚 English"],
       };
     }
   }
 
-  static CityChange(lang) {
+  static CourseChange(lang) {
     if (lang == "uz") {
-      return "Shahar o'zgardi";
+      return "Kurs o'zgardi";
     } else if (lang == "ru") {
-      return "Город изменился";
+      return "Курс изменился";
     } else if (lang == "eng") {
-      return "City was changed";
+      return "Course was changed";
     }
   }
 
   static PhoneSend(user) {
     if (user.lang == "uz") {
       return {
-        text: `<b>Muloqot tili:</b> 🇺🇿 O'zbekcha\n<b>Shahar:</b> ${user.city}\n<b>Telefon:</b> ${user.phone_number}\n\nTelefon raqamingizni yozib qoldiring`,
+        text: `<b>Muloqot tili:</b> 🇺🇿 O'zbekcha\n<b>Kurs:</b> ${user?.courses}\n<b>Telefon:</b> +${user?.phone_number}\n\n☎️ Telefon raqamingizni yozib qoldiring`,
         btns: {
           back: "⬅️ Ortga",
         },
       };
     } else if (user.lang == "ru") {
       return {
-        text: `<b>Язык общения:</b> 🇷🇺 Русский\n<b>Город:</b> ${user.city}\n<b>Телефон:</b> ${user.phone_number}\n\nЗапишите свой номер телефона`,
+        text: `<b>Язык общения:</b> 🇷🇺 Русский\n<b>Курс:</b> ${user?.courses}\n<b>Телефон:</b> +${user?.phone_number}\n\n☎️ Запишите свой номер телефона`,
         btns: {
           back: "⬅️ Назад",
         },
       };
     } else if (user.lang == "eng") {
       return {
-        text: `<b>Language:</b> 🇬🇧 English\n<b>City:</b> ${user.city}\n<b>Phone:</b> ${user.phone_number}\n\nSend your phone number`,
+        text: `<b>Language:</b> 🇬🇧 English\n<b>Course:</b> ${user?.courses}\n<b>Phone:</b> +${user?.phone_number}\n\n☎️ Send your phone number`,
         btns: {
           lang: "⬅️ Back",
         },

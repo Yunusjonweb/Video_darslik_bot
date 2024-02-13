@@ -5,7 +5,21 @@ module.exports = async function (bot, message, user) {
   try {
     const userId = message.from.id;
     const messageId = message.message.message_id;
-    const data = message.data;
+
+    await bot.deleteMessage(userId, messageId);
+
+    let msg = PhoneSend(user);
+
+    let keyboard = {
+      resize_keyboard: true,
+      keyboard: [
+        [ 
+          {
+            text: msg.btns.back,
+          },
+        ],
+      ],
+    };
 
     await users.findOneAndUpdate(
       {
@@ -15,21 +29,6 @@ module.exports = async function (bot, message, user) {
         step: "phone",
       }
     );
-
-    await bot.deleteMessage(userId, messageId);
-
-    let msg = PhoneSend(user);
-
-    let keyboard = {
-      resize_keyboard: true,
-      keyboard: [
-        [
-          {
-            text: msg.btns.back,
-          },
-        ],
-      ],
-    };
 
     await bot.sendMessage(userId, msg.text, {
       reply_markup: keyboard,

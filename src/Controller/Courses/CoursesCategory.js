@@ -1,8 +1,6 @@
-const categories = require("../../Model/Categories");
 const users = require("../../Model/Users");
-const LessonController = require("./LessonController");
 
-module.exports = async function (bot, message, user) {
+module.exports = async function (bot, message, user, categorye1) {
   try {
     const userId = message.from.id;
 
@@ -15,20 +13,27 @@ module.exports = async function (bot, message, user) {
       }
     );
 
-    const categoryList = await categories.find({});
-
     let keyboard = {
       resize_keyboard: true,
       keyboard: [],
     };
 
-    for (let i = 0; i < categoryList.length; i++) {
+    for (let i = 0; i < categorye1.length; i++) {
       keyboard.keyboard.push([
         {
-          text: categoryList[i].name,
+          text: categorye1[i].name,
         },
       ]);
     }
+
+    keyboard.keyboard.push([
+      {
+        text: "⬅️ Ortga",
+      },
+      {
+        text: "🔝 Davom etish",
+      },
+    ]);
 
     await bot.sendMessage(userId, "Mualliflardan birini tanlang 👇", {
       reply_markup: keyboard,
