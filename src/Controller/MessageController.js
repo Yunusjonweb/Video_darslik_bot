@@ -9,33 +9,30 @@ const MenuController = require("./MenuController");
 const users = require("../Model/Users");
 const admins = require("../Model/Admins");
 const addPost = require("../Admin/addPost");
+const StatisticsController = require("./Statistics/StatisticsController");
 
 module.exports = async function (bot, message, user) {
   const userId = message.from.id;
   const text = message.text;
   const { step } = user;
 
-  if (text == "/post") {
-    if (message.reply_to_message) {
-      let admin = await admins.findOne({
-        user_id: user.user_id,
-      });
+  if (text === "/post" && message.reply_to_message) {
+    let admin = await admins.findOne({ user_id: user.user_id });
 
-      if (admin) {
-        await addPost(
-          bot,
-          message.reply_to_message.message_id,
-          user.user_id,
-          message.reply_to_message.reply_markup
-        );
-      }
+    if (admin) {
+      await addPost(
+        bot,
+        message.reply_to_message.message_id,
+        user.user_id,
+        message.reply_to_message.reply_markup
+      );
     }
   }
 
   try {
     if (step === "startOrder") {
       await LessonKeyboard(bot, message, user);
-    } else if (step === "comment") {
+    } else if (step === "comment" || step === "phone") {
       if (
         text.includes("⬅️ Ortga") ||
         text.includes("⬅️ Назад") ||
@@ -43,18 +40,9 @@ module.exports = async function (bot, message, user) {
       ) {
         await users.findOneAndUpdate({ user_id: userId }, { step: 4 });
         await MenuController(bot, message, user);
-      } else {
+      } else if (step === "comment") {
         await CommentSave(bot, message, user);
-      }
-    } else if (step === "phone") {
-      if (
-        text.includes("⬅️ Ortga") ||
-        text.includes("⬅️ Назад") ||
-        text.includes("⬅️ Back")
-      ) {
-        await users.findOneAndUpdate({ user_id: userId }, { step: 4 });
-        await MenuController(bot, message, user);
-      } else {
+      } else if (step === "phone") {
         const phoneNumberRegex =
           /^998(90|91|93|94|95|97|98|99|71|55|33|88)\d{7}$/;
         if (phoneNumberRegex.test(parseInt(text))) {
@@ -79,33 +67,9 @@ module.exports = async function (bot, message, user) {
     ) {
       await CommentController(bot, message, user);
     } else if ((step == 4 || step == 5) && text.includes("⚙️ Sozlamalar")) {
-      const chneufguw = 6525027346;
-      await bot.sendMessage(chneufguw, "Salom");
       await SettingsController(bot, message, user);
     } else if ((step == 4 || step == 5) && text.includes("📊 Statistikasi")) {
-      const last24Hours = new Date(new Date() - 24 * 60 * 60 * 1000);
-      const last30Days = new Date(new Date() - 30 * 24 * 60 * 60 * 1000);
-
-      const count24Hours = await users.countDocuments({
-        createdAt: { $gte: last24Hours },
-      });
-      const count30Days = await users.countDocuments({
-        createdAt: { $gte: last30Days },
-      });
-
-      const firstRecord = await users.findOne(
-        {},
-        {},
-        { sort: { createdAt: 1 } }
-      );
-      const totalUsers = await users.countDocuments({});
-      const daysSinceStart = Math.floor(
-        (new Date() - firstRecord.createdAt) / (1000 * 60 * 60 * 24)
-      );
-
-      const message = `👥  Jami obunachilar: ${totalUsers} ta\n\n🆕 Oxirgi 24 soatda: ${count24Hours} ta obunachi qo'shildi\n🆕 Oxirgi 1 oyda: ${count30Days} ta obunachi qo'shildi\n📆 Bot ishga tushganiga: ${daysSinceStart} kun bo'ldi\n\n📊 @dustlikitcenter statistikasi`;
-
-      bot.sendMessage(userId, message);
+      await StatisticsController(bot, message, user);
     } else {
       const categoryList = await categories.find({ category_id: null });
 
