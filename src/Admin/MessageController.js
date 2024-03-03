@@ -23,7 +23,7 @@ module.exports = async function (bot, message, admin) {
 
     if (text == "/start" && admin.step == 0) {
       await HomeController(bot, message, admin);
-    } else if (admin.step == "0" && text == "➕ Kategoriyalar") {
+    } else if (admin.step == 0 && text == "➕ Kategoriyalar") {
       await admins.findOneAndUpdate(
         {
           user_id: userId,

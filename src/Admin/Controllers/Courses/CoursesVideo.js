@@ -5,7 +5,12 @@ module.exports = async function (bot, message, admin, productId) {
   try {
     const userId = message.from.id;
     const channelId = -1002145163406;
-    const videoPath = message.video.file_id;
+    const videoPath = message.video && message.video.file_id;
+
+    if (!videoPath) {
+      await bot.sendMessage(userId, "❌ Video topilmadi");
+      return;
+    }
 
     await admins.findOneAndUpdate(
       {
@@ -31,15 +36,16 @@ module.exports = async function (bot, message, admin, productId) {
 
     const options = {
       caption: "This is a video caption.",
-      duration: 60, // Video duration in seconds
-      width: 640, // Video width in pixels
-      height: 480, // Video height in pixels
+      duration: 60,
+      width: 640,
+      height: 480,
     };
 
-    bot.sendVideo(channelId, videoPath, {
+    await bot.sendVideo(channelId, videoPath, {
       caption: `${course.id}`,
       parse_mode: "HTML",
     });
+
     await bot.sendVideo(userId, videoPath, {
       reply_markup: {
         resize_keyboard: true,
@@ -58,6 +64,6 @@ module.exports = async function (bot, message, admin, productId) {
       parse_mode: "HTML",
     });
   } catch (err) {
-    console.log(err + "");
+    console.log(err.toString());
   }
 };

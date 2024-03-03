@@ -1,0 +1,57 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Users\hp\AppData\Local\Microsoft\WindowsApps;C:\Users\hp\AppData\Local\atom\bin;C:\Users\hp\AppData\Local\Microsoft\WindowsApps;C:\Users\hp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\hp\AppData\Local\Android\Sdk\platform-tools;C:\Users\hp\AppData\Local\Yarn\bin;C:\Program Files\heroku\bin;C:\Users\hp\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.11.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  TypeError [ERR_INVALID_ARG_VALUE]: The property 'options.env['npm_package_description']' must be a string without null bytes. Received '��#\x00 \x00V\x00i\x00d\x00e\x00o\x00_\x00k\x00u\x00r\x00s\x00_\x00b\x00o\x00t\x00\r\x00 \x00'
+      at validateArgumentNullCheck (node:child_process:973:11)
+      at normalizeSpawnArguments (node:child_process:700:7)
+      at Object.spawn (node:child_process:754:13)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:25732:24
+      at new Promise (<anonymous>)
+      at new F (C:\Program Files (x86)\Yarn\lib\cli.js:5305:28)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:25729:12
+      at run (C:\Program Files (x86)\Yarn\lib\cli.js:43184:7)
+      at BlockingQueue.maybePushConcurrencyQueue (C:\Program Files (x86)\Yarn\lib\cli.js:43199:7)
+      at BlockingQueue.shift (C:\Program Files (x86)\Yarn\lib\cli.js:43194:10)
+
+npm manifest: 
+  {
+    "name": "video_bot",
+    "version": "1.0.0",
+    "description": "��#\u0000 \u0000V\u0000i\u0000d\u0000e\u0000o\u0000_\u0000k\u0000u\u0000r\u0000s\u0000_\u0000b\u0000o\u0000t\u0000\r\u0000 \u0000",
+    "main": "index.js",
+    "scripts": {
+      "start": "node ./src/index.js",
+      "dev": "nodemon ./src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "dotenv": "^16.3.2",
+      "fs": "^0.0.1-security",
+      "mongoose": "^8.1.0",
+      "multer": "^1.4.5-lts.1",
+      "node-telegram-bot-api": "^0.64.0",
+      "path": "^0.12.7"
+    },
+    "devDependencies": {}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

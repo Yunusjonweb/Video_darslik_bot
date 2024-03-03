@@ -1,6 +1,6 @@
 const users = require("../../Model/Users");
 
-module.exports = async function (bot, message, user, categorye1) {
+module.exports = async function (bot, message, user, categoryeData) {
   try {
     const userId = message.from.id;
 
@@ -18,10 +18,10 @@ module.exports = async function (bot, message, user, categorye1) {
       keyboard: [],
     };
 
-    for (let i = 0; i < categorye1.length; i++) {
+    for (let i = 0; i < categoryeData.length; i++) {
       keyboard.keyboard.push([
         {
-          text: categorye1[i].name,
+          text: categoryeData[i].name,
         },
       ]);
     }
@@ -29,9 +29,6 @@ module.exports = async function (bot, message, user, categorye1) {
     keyboard.keyboard.push([
       {
         text: "⬅️ Ortga",
-      },
-      {
-        text: "🔝 Davom etish",
       },
     ]);
 

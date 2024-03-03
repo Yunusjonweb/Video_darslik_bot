@@ -37,13 +37,17 @@ module.exports = async function (bot, message, user) {
 
     const course = coursesList[0];
 
-    const courseCaption = `📚 Kurs nomi: <b>${course?.name}</b>\n🧑🏻 Kurs muallifi: ${course?.author}\n✍️ Kurs haqida malumot:${course?.description} \n\n 🔊 Ijtimoiy tarmoqlardagi sahifalarimizga obuna bo'lishni  unutmang. \n\n <a href="http://t.me/yunusbeksherlari">Telegram </a><a href="https://www.instagram.com/reel/CyZzmYSiV5f/?igshid=MTc4MmM1YmI2Ng==">| Instagram </a><a href="https://www.youtube.com/channel/UCRtnsijR37YvpvyYIYV6TeA">| YouTube </a><a href="https://www.tiktok.com/@yunusbek_sherlari?_t=8i7DShr0hb0&_r=1">| TikTok </a>`;
+    const courseCaption = `📚 Kurs nomi: <b>${course?.name}</b>\n🧑🏻 Kurs muallifi: ${course?.author}\n✍️ Kurs haqida malumot:${course?.description} \n\n 🔊 Ijtimoiy tarmoqlardagi sahifalarimizga obuna bo'lishni  unutmang. \n\n <a href="http://t.me/yunusbeksherlari">Telegram</a> | <a href="https://www.instagram.com/reel/CyZzmYSiV5f/?igshid=MTc4MmM1YmI2Ng==">Instagram </a> | <a href="https://www.youtube.com/channel/UCRtnsijR37YvpvyYIYV6TeA">YouTube </a> | <a href="https://www.tiktok.com/@yunusbek_sherlari?_t=8i7DShr0hb0&_r=1">TikTok</a>`;
 
-    await bot.sendVideo(userId, course?.video, {
-      parse_mode: "HTML",
-      caption: courseCaption,
-      disable_notification: true,
-    });
+    if (course?.video) {
+      await bot.sendVideo(userId, course?.video, {
+        parse_mode: "HTML",
+        caption: courseCaption,
+        disable_notification: true,
+      });
+    } else {
+      await bot.sendMessage(userId, "❌ Video topilmadi");
+    }
   } catch (err) {
     console.log(err.toString());
   }

@@ -4,9 +4,7 @@ const { MenuMsg } = require("./Texts");
 module.exports = async function (bot, message, user) {
   try {
     const userId = message.from.id;
-
     const menuMsg = MenuMsg(user.lang);
-
     const categoryList = await categories.find({ category_id: null });
 
     const keyboard = {
@@ -32,20 +30,14 @@ module.exports = async function (bot, message, user) {
       keyboard.keyboard.push(row);
     }
 
-    keyboard.keyboard.push([
-      {
-        text: menuMsg.keyboard.comment,
-      },
-      {
-        text: menuMsg.keyboard.settings,
-      },
-    ]);
+    const additionalButtons = [
+      { text: menuMsg.keyboard.comment },
+      { text: menuMsg.keyboard.settings },
+    ];
 
-    keyboard.keyboard.push([
-      {
-        text: menuMsg.keyboard.statistics,
-      },
-    ]);
+    keyboard.keyboard.push(additionalButtons);
+
+    keyboard.keyboard.push([{ text: menuMsg.keyboard.statistics }]);
 
     await bot.sendMessage(userId, menuMsg.text, {
       reply_markup: keyboard,

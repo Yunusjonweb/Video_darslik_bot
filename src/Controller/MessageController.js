@@ -71,14 +71,14 @@ module.exports = async function (bot, message, user) {
     } else if ((step == 4 || step == 5) && text.includes("📊 Statistikasi")) {
       await StatisticsController(bot, message, user);
     } else {
-      const categoryList = await categories.find({ category_id: null });
+      const categoryList = await categories.find();
 
       for (const category of categoryList) {
         if (text === category.name) {
-          const categorye1 = await categories.find({
+          const categoryeData = await categories.find({
             category_id: category.id,
           });
-          await CoursesCategory(bot, message, user, categorye1);
+          await CoursesCategory(bot, message, user, categoryeData);
           return;
         }
       }

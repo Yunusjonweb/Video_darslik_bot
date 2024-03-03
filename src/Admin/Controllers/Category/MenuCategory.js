@@ -47,13 +47,6 @@ module.exports = async function (bot, message, user) {
       keyboard.inline_keyboard.push(newRow);
     }
 
-    keyboard.inline_keyboard.push([
-      {
-        text: "🔝 Davom etish",
-        callback_data: `menu`,
-      },
-    ]);
-
     let category = await categories.findOne({
       id,
     });
