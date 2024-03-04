@@ -32,12 +32,10 @@ bot.on("message", async (msg) => {
     } else if (!isRegistered) {
       await SignUp(bot, msg, user);
     } else {
-      if (isSubscribed) {
-        if (user.step > 4) {
-          await MenuController(bot, msg, user);
-        }
-        await MessageController(bot, msg, user);
+      if (user.step > 4) {
+        await MenuController(bot, msg, user);
       }
+      await MessageController(bot, msg, user);
     }
   } catch (e) {
     console.log(e + "");
