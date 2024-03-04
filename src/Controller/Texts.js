@@ -251,7 +251,6 @@ module.exports = class Texts {
         text: "Mualliflardan birini tanlang 👇",
         btns: {
           back: "⬅️ Ortga",
-          location: "📍 Geo-joylashuvni yuborish",
         },
       };
     } else if (lang == "ru") {
@@ -259,7 +258,6 @@ module.exports = class Texts {
         text: "Выберите одного из авторов 👇",
         btns: {
           back: "⬅️ Ortga",
-          location: "📍 Geo-joylashuvni yuborish",
         },
       };
     } else if (lang == "eng") {

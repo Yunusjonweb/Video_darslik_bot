@@ -32,7 +32,7 @@ module.exports = async function (bot, message, user, categoryeData) {
       },
     ]);
 
-    await bot.sendMessage(userId, "Mualliflardan birini tanlang 👇", {
+    await bot.sendMessage(userId, "Kurslardan birini tanlang 👇", {
       reply_markup: keyboard,
     });
   } catch (err) {

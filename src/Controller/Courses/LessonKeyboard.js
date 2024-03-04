@@ -39,7 +39,7 @@ module.exports = async function (bot, message, user) {
 
     keyboard.keyboard.push([{ text: "⬅️ Ortga" }]);
 
-    await bot.sendMessage(userId, "Kurslardan birini tanlang 👇", {
+    await bot.sendMessage(userId, "Darsliklardan birini tanlang 👇", {
       reply_markup: keyboard,
     });
   } catch (err) {
