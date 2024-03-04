@@ -32,7 +32,7 @@ bot.on("message", async (msg) => {
     } else if (!isRegistered) {
       await SignUp(bot, msg, user);
     } else {
-      if (user.step > 4) {
+      if (user.step >= 4) {
         await MenuController(bot, msg, user);
       }
       await MessageController(bot, msg, user);
