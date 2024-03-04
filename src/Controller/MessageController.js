@@ -34,9 +34,9 @@ module.exports = async function (bot, message, user) {
       await LessonKeyboard(bot, message, user);
     } else if (step === "comment" || step === "phone") {
       if (
-        text.includes("⬅️ Ortga") ||
-        text.includes("⬅️ Назад") ||
-        text.includes("⬅️ Back")
+        text.includes("🔙 Ortga") ||
+        text.includes("🔙 Назад") ||
+        text.includes("🔙 Back")
       ) {
         await users.findOneAndUpdate({ user_id: userId }, { step: 4 });
         await MenuController(bot, message, user);
@@ -65,7 +65,25 @@ module.exports = async function (bot, message, user) {
       (step == 4 || step == 5) &&
       text.includes("✍️ Taklif yuborish")
     ) {
-      await CommentController(bot, message, user);
+      let keyboard = {
+        inline_keyboard: [
+          [
+            {
+              text: "✍️ Murojaat yozish",
+              url: "https://t.me/yunusbekxabibullayev",
+            },
+          ],
+        ],
+      };
+      await bot.sendMessage(
+        userId,
+        `Ushbu bot haqida takliflaringiz va bot ni sotib olish bo'yicha murojaatlar yuborishingiz mumkin.(<i>Masalan: Yunus Xabibullayev</i>)`,
+        {
+          reply_markup: keyboard,
+          parse_mode: "HTML",
+        }
+      );
+      // await CommentController(bot, message, user);
     } else if ((step == 4 || step == 5) && text.includes("⚙️ Sozlamalar")) {
       await SettingsController(bot, message, user);
     } else if ((step == 4 || step == 5) && text.includes("📊 Statistikasi")) {

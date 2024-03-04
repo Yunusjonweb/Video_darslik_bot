@@ -43,7 +43,7 @@ module.exports = async function (bot, message, admin) {
             : admin.step?.split("#")[1];
 
         await AddCategory(bot, message, admin, categoryId);
-      } else if (text == "⬅️ Ortga") {
+      } else if (text == "🔙 Ortga") {
         let stepId = admin.step?.split("#")[1];
         let category = await categories.findOne({
           id: stepId,
@@ -128,7 +128,7 @@ module.exports = async function (bot, message, admin) {
         let step = admin.step.split("#")[2];
         step = step == "all" ? undefined : step;
         await AddCourses(bot, message, admin, step);
-      } else if (text == "⬅️ Ortga") {
+      } else if (text == "🔙 Ortga") {
         await CoursesCategoryBack(bot, message, admin);
       } else {
         await CoursesCategory(bot, message, admin);
@@ -137,7 +137,7 @@ module.exports = async function (bot, message, admin) {
       let productId = admin.step.split("#")[1];
       let step = admin.step.split("#")[2];
 
-      if (text == "⬅️ Ortga") {
+      if (text == "🔙 Ortga") {
         let productId = admin.step.split("#")[1];
         await DeleteCourses(bot, message, admin, productId);
       } else if (step == "name") {

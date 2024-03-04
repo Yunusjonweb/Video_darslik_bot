@@ -120,17 +120,17 @@ module.exports = class Texts {
     if (lang == "uz") {
       return {
         text: "📩 Fikr va mulohazalaringizni yuboring",
-        btn: "⬅️ Ortga",
+        btn: "🔙 Ortga",
       };
     } else if (lang == "ru") {
       return {
         text: "📩 Отправьте свои мысли и отзывы",
-        btn: "⬅️ Назад",
+        btn: "🔙 Назад",
       };
     } else if (lang == "eng") {
       return {
         text: "📩 Leave your commments",
-        btn: "⬅️ Back",
+        btn: "🔙 Back",
       };
     }
   }
@@ -225,7 +225,7 @@ module.exports = class Texts {
       return {
         text: `<b>Muloqot tili:</b> 🇺🇿 O'zbekcha\n<b>Kurs:</b> ${user?.courses}\n<b>Telefon:</b> +${user?.phone_number}\n\n☎️ Telefon raqamingizni yozib qoldiring`,
         btns: {
-          back: "⬅️ Ortga",
+          back: "🔙 Ortga",
         },
       };
     } else if (user.lang == "ru") {
@@ -250,21 +250,21 @@ module.exports = class Texts {
       return {
         text: "Mualliflardan birini tanlang 👇",
         btns: {
-          back: "⬅️ Ortga",
+          back: "🔙 Ortga",
         },
       };
     } else if (lang == "ru") {
       return {
         text: "Выберите одного из авторов 👇",
         btns: {
-          back: "⬅️ Ortga",
+          back: "🔙 Ortga",
         },
       };
     } else if (lang == "eng") {
       return {
         text: "Choose one of the authors 👇",
         btns: {
-          back: "⬅️ Ortga",
+          back: "🔙 Ortga",
           location: "📍 Geo-joylashuvni yuborish",
         },
       };
@@ -385,7 +385,7 @@ module.exports = class Texts {
     if (lang == "uz") {
       return {
         text: "Ish joyi topish uchun ariza berish\nHozir sizga birnecha savollar beriladi. Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.",
-        btn: "⬅️ Ortga",
+        btn: "🔙 Ortga",
       };
     }
     if (lang == "ru") {

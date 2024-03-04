@@ -55,7 +55,7 @@ module.exports = async function (bot, message, admin, productId) {
               text: "Saqlash",
             },
             {
-              text: "⬅️ Ortga",
+              text: "🔙 Ortga",
             },
           ],
         ],

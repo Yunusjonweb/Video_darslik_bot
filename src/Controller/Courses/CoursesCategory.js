@@ -28,7 +28,7 @@ module.exports = async function (bot, message, user, categoryeData) {
 
     keyboard.keyboard.push([
       {
-        text: "⬅️ Ortga",
+        text: "🔙 Ortga",
       },
     ]);
 

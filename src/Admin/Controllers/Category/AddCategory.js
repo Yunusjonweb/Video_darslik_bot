@@ -19,7 +19,7 @@ module.exports = async function (bot, message, admin, categoryId) {
         keyboard: [
           [
             {
-              text: "⬅️ Ortga",
+              text: "🔙 Ortga",
             },
           ],
         ],

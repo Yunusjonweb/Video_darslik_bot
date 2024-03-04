@@ -15,7 +15,7 @@ module.exports = async function (bot, message, user) {
 
     const category = await categories.findOne({ name: messageText });
 
-    if (messageText === "⬅️ Ortga") {
+    if (messageText === "🔙 Ortga") {
       await usersModel.findOneAndUpdate({ user_id: userId }, { step: 5 });
 
       await MenuController(bot, message, user);
@@ -37,7 +37,7 @@ module.exports = async function (bot, message, user) {
       keyboard.keyboard.push(row);
     }
 
-    keyboard.keyboard.push([{ text: "⬅️ Ortga" }]);
+    keyboard.keyboard.push([{ text: "🔙 Ortga" }]);
 
     await bot.sendMessage(userId, "Darsliklardan birini tanlang 👇", {
       reply_markup: keyboard,

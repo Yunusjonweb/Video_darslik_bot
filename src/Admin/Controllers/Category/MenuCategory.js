@@ -57,7 +57,7 @@ module.exports = async function (bot, message, user) {
 
     keyboard.inline_keyboard.push([
       {
-        text: "⬅️ Ortga",
+        text: "🔙 Ortga",
         callback_data: backData,
       },
     ]);
