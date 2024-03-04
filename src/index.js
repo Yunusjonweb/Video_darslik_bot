@@ -1,7 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
 const { TOKEN } = require("../config");
 const SignUp = require("./Controller/SignUp");
-const users = require("./Model/Users");
 const mongo = require("./Model/mongo");
 const MenuController = require("./Controller/MenuController");
 const admin = require("./Admin/admin");
@@ -14,6 +13,7 @@ const LangController = require("./Controller/Settings/LangController");
 const LangSave = require("./Controller/Settings/LangSave");
 const { check_registration } = require("../src/helpers/functions");
 const courses = require("./Model/Courses");
+const users = require("./Model/Users");
 
 const bot = new TelegramBot(TOKEN, {
   polling: true,
@@ -23,7 +23,7 @@ mongo();
 
 bot.on("message", async (msg) => {
   try {
-    const userID = msg.from.id;
+    const userID = msg?.from?.id;
     let user = await users.findOne({ user_id: userID });
     const isRegistered = await check_registration(user?.user_id);
 
@@ -32,8 +32,12 @@ bot.on("message", async (msg) => {
     } else if (!isRegistered) {
       await SignUp(bot, msg, user);
     } else {
-      // await MenuController(bot, msg, user);
-      await MessageController(bot, msg, user);
+      if (isSubscribed) {
+        if (user.step > 4) {
+          await MenuController(bot, msg, user);
+        }
+        await MessageController(bot, msg, user);
+      }
     }
   } catch (e) {
     console.log(e + "");

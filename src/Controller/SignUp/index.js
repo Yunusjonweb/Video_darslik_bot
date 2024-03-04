@@ -98,8 +98,6 @@ module.exports = async function (bot, message, user) {
         return;
       }
 
-      let code = ("" + Math.random()).substring(2, 7);
-
       await users.findOneAndUpdate(
         { user_id: userId },
         {
