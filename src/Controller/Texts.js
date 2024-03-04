@@ -271,104 +271,6 @@ module.exports = class Texts {
     }
   }
 
-  static verLocation(lang) {
-    if (lang == "uz") {
-      return {
-        text: "Ushbu manzilni tasdiqlaysizmi?",
-        btns: {
-          yes: "✅ Ha",
-          no: "❌ Yo'q",
-        },
-      };
-    } else if (lang == "ru") {
-      return {
-        text: "Вы подтверждаете этот адрес?",
-        btns: {
-          yes: "✅ Да",
-          no: "❌ Нет",
-        },
-      };
-    }
-    if (lang == "eng") {
-      return {
-        text: "Confirm this address?",
-        btns: {
-          yes: "✅ Yes",
-          no: "❌ No",
-        },
-      };
-    }
-  }
-
-  static verAttribution(lang) {
-    if (lang == "uz") {
-      return {
-        text: "Ushbu maxsulotlar haqiqatan yuborilsinmi ?",
-        btns: {
-          yes: "✅ Ha",
-          no: "❌ Yo'q",
-        },
-      };
-    } else if (lang == "ru") {
-      return {
-        text: "Действительно ли эти продукты отправляются ?",
-        btns: {
-          yes: "✅ Да",
-          no: "❌ Нет",
-        },
-      };
-    }
-    if (lang == "eng") {
-      return {
-        text: "Are these products really sent ?",
-        btns: {
-          yes: "✅ Yes",
-          no: "❌ No",
-        },
-      };
-    }
-  }
-
-  static startOrderMenu(lang) {
-    if (lang == "uz") {
-      return {
-        text: "Quydagilardan birini tanlang",
-        btns: {
-          change_location: "📍 Manzilni o'zgartirish",
-          menu: "🍽 Menu",
-          orders: "🛍 Buyurtmalarim",
-          vacancy: "👪 Bosh ish o'rni",
-          comment: "✍️ Fikr bildirish",
-          settings: "⚙️ Sozlamalar",
-        },
-      };
-    } else if (lang == "ru") {
-      return {
-        text: "Выберите один из следующих вариантов",
-        btns: {
-          change_location: "📍 Изменить адрес",
-          menu: "🍽 Меню",
-          orders: "🛍 Мои заказы",
-          vacancy: "👪 Главная работа",
-          comment: "♦ Комментарий",
-          settings: "⚙ ️ Настройки",
-        },
-      };
-    } else if (lang == "eng") {
-      return {
-        text: "Choose one of those below",
-        btns: {
-          change_location: "📍 Change address",
-          menu: "🍽 Menu",
-          orders: "🛍 My orders",
-          vacancy: "👪 Head job",
-          comment: "✍️ Feedback",
-          settings: "⚙️ Settings",
-        },
-      };
-    }
-  }
-
   static Menu(lang) {
     if (lang == "uz") {
       return "Kategoriyalardan birini tanlang";
@@ -378,27 +280,6 @@ module.exports = class Texts {
     }
     if (lang == "eng") {
       return "Choose one of the categories";
-    }
-  }
-
-  static vacancyStart(lang) {
-    if (lang == "uz") {
-      return {
-        text: "Ish joyi topish uchun ariza berish\nHozir sizga birnecha savollar beriladi. Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.",
-        btn: "🔙 Ortga",
-      };
-    }
-    if (lang == "ru") {
-      return {
-        text: "Подача заявки на работу\n теперь вам будет задано несколько вопросов. Ответьте на каждый. В конце, если все правильно, нажмите да, и ваше приложение будет отправлено администратору.",
-        btn: "⬅️ Назад",
-      };
-    }
-    if (lang == "eng") {
-      return {
-        text: "Applying to find a job\n You will now be asked some questions. Answer each one. At the end, if everything is right, click yes and your application will be sent to Admin.",
-        btn: "⬅️ Back",
-      };
     }
   }
 };
