@@ -1,6 +1,6 @@
 const users = require("../../Model/Users");
 
-module.exports = async function (bot, message, user, categoryeData) {
+module.exports = async function (bot, message, user, categoryData) {
   try {
     const userId = message.from.id;
 
@@ -18,12 +18,14 @@ module.exports = async function (bot, message, user, categoryeData) {
       keyboard: [],
     };
 
-    for (let i = 0; i < categoryeData.length; i++) {
-      keyboard.keyboard.push([
-        {
-          text: categoryeData[i].name,
-        },
-      ]);
+    for (let i = 0; i < categoryData.length; i += 3) {
+      const row = categoryData.slice(i, i + 3).map((course) => {
+        return {
+          text: course.name,
+        };
+      });
+
+      keyboard.keyboard.push(row);
     }
 
     keyboard.keyboard.push([

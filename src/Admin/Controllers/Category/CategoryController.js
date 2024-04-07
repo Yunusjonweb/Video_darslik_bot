@@ -4,7 +4,6 @@ const categories = require("../../../Model/Categories");
 module.exports = async function (bot, message, admin, category_id) {
   try {
     const userId = message.from.id;
-    const text = message.text;
     let categoryList = [];
 
     if (category_id) {
@@ -26,12 +25,11 @@ module.exports = async function (bot, message, admin, category_id) {
       ],
     };
 
-    for (let category of categoryList) {
-      keyboard.keyboard.push([
-        {
-          text: category.name,
-        },
-      ]);
+    for (let i = 0; i < categoryList.length; i += 3) {
+      const row = categoryList
+        .slice(i, i + 3)
+        .map((category) => ({ text: category.name }));
+      keyboard.keyboard.push(row);
     }
 
     keyboard.keyboard.push([
@@ -51,15 +49,15 @@ module.exports = async function (bot, message, admin, category_id) {
         userId,
         `Quydagi kategoriyalardan birini tanlang!`,
         {
-          reply_markup: keyboard,
+          reply_markup: JSON.stringify(keyboard),
         }
       );
     } else {
       await bot.sendMessage(userId, `Malumot topilmadi`, {
-        reply_markup: keyboard,
+        reply_markup: JSON.stringify(keyboard),
       });
     }
   } catch (error) {
-    console.log(err + "");
+    console.log(error + "");
   }
 };

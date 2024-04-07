@@ -15,9 +15,7 @@ module.exports = async function (bot, message, user) {
   const userId = message.from.id;
   const text = message.text;
   const { step } = user;
-  bot.on("start", (message) => {
-    console.log("voy boy nma gap");
-  });
+
   if (text === "/post" && message.reply_to_message) {
     let admin = await admins.findOne({ user_id: user.user_id });
 
@@ -32,7 +30,7 @@ module.exports = async function (bot, message, user) {
   }
 
   try {
-    if (step === "startOrder") {
+    if (step == "startOrder") {
       await LessonKeyboard(bot, message, user);
     } else if (step === "comment" || step === "phone") {
       if (

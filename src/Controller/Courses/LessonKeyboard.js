@@ -33,7 +33,6 @@ module.exports = async function (bot, message, user) {
       const row = categoryList
         .slice(i, i + 3)
         .map((course) => ({ text: course.name }));
-
       keyboard.keyboard.push(row);
     }
 
